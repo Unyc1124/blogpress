@@ -8,15 +8,12 @@ ENV WEBROOT=/var/www/html/public
 ENV PHP_ERRORS_STDERR=1
 ENV RUN_SCRIPTS=1
 ENV REAL_IP_HEADER=1
-
 ENV APP_ENV=production
 ENV APP_DEBUG=false
 ENV LOG_CHANNEL=stderr
-
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
-# Install Node.js 18
-RUN apk add --no-cache nodejs npm --repository=https://dl-cdn.alpinelinux.org/alpine/v3.18/main
+RUN apk add --no-cache nodejs npm python3 make g++
 
 RUN npm install && npm run build
 
