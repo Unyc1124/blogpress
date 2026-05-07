@@ -17,5 +17,4 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 
 RUN composer install --no-dev --optimize-autoloader
 
-RUN php artisan migrate --force
-RUN php artisan db:seed --force
+# Remove migrate/seed from here — move to runtime
