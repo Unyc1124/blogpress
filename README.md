@@ -1,59 +1,251 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# BlogPress / JobYaari - Blog Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Project Overview
 
-## About Laravel
+ JobYaari (JobYaari Assignment Project) is a full-stack Blog Management System developed using Laravel. The project includes both frontend and admin functionalities with dynamic AJAX-based filtering, authentication, responsive UI design, and live deployment.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+The application allows users to browse blogs, search articles, filter blogs dynamically without page refresh, and read full blog content. Admin users can securely manage blog posts through a dedicated dashboard.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+This project was developed as part of the PHP/Laravel Developer Internship Assessment.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+# Live Project
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## Live Website
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```text
+https://blogpress-e2tl.onrender.com
+```
 
-## Laravel Sponsors
+## GitHub Repository
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```text
+https://github.com/Unyc1124/blogpress
+```
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+# Admin Login Credentials
 
-## Contributing
+## Admin Panel URL
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```text
+https://blogpress-e2tl.onrender.com/login
+```
 
-## Code of Conduct
+## Credentials
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```text
+Email: admin@example.com
+Password: admin123
+```
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# Features
 
-## License
+## Frontend Features
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+* Responsive homepage
+* Blog listing page
+* Blog detail page
+* Search functionality
+* AJAX category filtering
+* AJAX date filtering
+* Dynamic blog rendering from database
+* Related blogs section
+* Pagination
+* Mobile responsive navbar with hamburger menu
+* Responsive cards and layouts
+
+---
+
+## Admin Features
+
+* Admin authentication system
+* Admin dashboard
+* Create blog posts
+* Edit blog posts
+* Delete blog posts
+* Upload featured images
+* Manage categories
+* Rich text editor using CKEditor
+
+---
+
+# Technologies Used
+
+## Backend
+
+* PHP
+* Laravel 12
+* Eloquent ORM
+* Laravel Authentication
+* Laravel Blade Templates
+
+---
+
+## Frontend
+
+* HTML5
+* CSS3
+* JavaScript
+* jQuery
+* AJAX
+* Responsive Design
+
+---
+
+## Database
+
+* PostgreSQL (Production - Render)
+* MySQL (Local Development)
+
+---
+
+## Deployment
+
+* GitHub
+* Render
+* Docker
+
+---
+
+# AJAX Filtering Functionality
+
+One of the main requirements of the assignment was implementing dynamic filtering using AJAX and jQuery.
+
+The project includes:
+
+* Filter blogs by category
+* Filter blogs by date
+* Dynamic content loading without page refresh
+* Partial Blade rendering
+* jQuery AJAX requests
+
+This improves user experience by updating blogs instantly without reloading the page.
+
+---
+
+# Database Relationships
+
+The project uses Laravel Eloquent relationships.
+
+## Relationships Used
+
+* Blog belongsTo Category
+* Blog belongsTo User (Author)
+* Blog belongsToMany Tags
+* Category hasMany Blogs
+
+---
+
+# Search Functionality
+
+The search system allows users to search blogs dynamically using:
+
+* Blog title
+* Category name
+* Tag name
+
+The search is implemented using Laravel query builder and Eloquent relationships.
+
+---
+
+# CKEditor Integration
+
+CKEditor is integrated for rich blog content creation.
+
+Features:
+
+* Rich text formatting
+* Better content editing experience
+* Admin-friendly blog creation
+
+---
+
+# Responsive Design
+
+The project is fully responsive and optimized for:
+
+* Mobile devices
+* Tablets
+* Laptops
+* Desktop screens
+
+Responsive improvements include:
+
+* Mobile navbar with hamburger menu
+* Responsive dashboard
+* Responsive tables
+* Flexible blog cards
+* Adaptive layouts
+
+---
+
+# Deployment Process
+
+The project was deployed using Render with Docker support.
+
+Deployment included:
+
+* GitHub repository integration
+* Docker configuration
+* Environment variable setup
+* PostgreSQL database integration
+* Production migrations
+* Laravel optimization
+
+---
+
+# Challenges Faced During Development
+
+During development and deployment, several real-world issues were encountered and resolved.
+
+## Problems Solved
+
+* Responsive layout issues
+* AJAX rendering issues
+* Laravel route/cache issues
+* Docker deployment failures
+* MySQL vs PostgreSQL migration conflicts
+* Render environment variable configuration
+* Production database migration problems
+
+These issues helped improve debugging and deployment understanding.
+
+---
+
+# Assignment Requirements Covered
+
+## Completed Requirements
+
+* PHP/Laravel Backend
+* Database Integration
+* Responsive Frontend
+* AJAX Filtering
+* Search Functionality
+* CRUD Operations
+* Admin Authentication
+* Live Deployment
+* GitHub Repository
+* Mobile Responsive Design
+* Blog Management System
+
+
+---
+
+# Author
+
+Developed by:
+
+```text
+Aditi Dubey
+```
+
+---
+
+# Thank You
+
+Thank you for reviewing this project.
