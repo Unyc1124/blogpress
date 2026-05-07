@@ -15,6 +15,9 @@ ENV LOG_CHANNEL=stderr
 
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
+# Install Node.js
+RUN apk add --no-cache nodejs npm
+
 RUN npm install && npm run build
 
 RUN composer install --no-dev --optimize-autoloader
