@@ -1,5 +1,14 @@
+FROM node:20-alpine AS node_builder
+
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
 FROM richarvey/nginx-php-fpm:3.1.6
 
+COPY --from=node_builder /app/public/build /var/www/html/public/build
 COPY . /var/www/html
 
 WORKDIR /var/www/html
@@ -12,12 +21,6 @@ ENV APP_ENV=production
 ENV APP_DEBUG=false
 ENV LOG_CHANNEL=stderr
 ENV COMPOSER_ALLOW_SUPERUSER=1
-
-# Install Node.js 20
-RUN apk add --no-cache curl python3 make g++ && \
-    curl -fsSL https://unofficial-builds.nodejs.org/download/release/v20.19.0/node-v20.19.0-linux-x64-musl.tar.gz | tar -xz -C /usr/local --strip-components=1
-
-RUN npm install && npm run build
 
 RUN composer install --no-dev --optimize-autoloader
 
