@@ -18,7 +18,7 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 # Install Node.js 18
 RUN apk add --no-cache nodejs npm --repository=https://dl-cdn.alpinelinux.org/alpine/v3.18/main
 
-RUN npm ci && npm run build
+RUN npm install && npm run build
 
 RUN composer install --no-dev --optimize-autoloader
 
