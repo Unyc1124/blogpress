@@ -15,6 +15,8 @@ ENV LOG_CHANNEL=stderr
 
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
+RUN npm install && npm run build
+
 RUN composer install --no-dev --optimize-autoloader
 
 RUN chmod +x /var/www/html/start.sh
