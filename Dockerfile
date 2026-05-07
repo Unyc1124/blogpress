@@ -1,8 +1,9 @@
 FROM richarvey/nginx-php-fpm:3.1.6
 
-COPY . .
+COPY . /var/www/html
 
-ENV SKIP_COMPOSER=1
+WORKDIR /var/www/html
+
 ENV WEBROOT=/var/www/html/public
 ENV PHP_ERRORS_STDERR=1
 ENV RUN_SCRIPTS=1
@@ -14,4 +15,9 @@ ENV LOG_CHANNEL=stderr
 
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
-CMD ["/start.sh"]
+RUN composer install --no-dev --optimize-autoloader
+
+RUN php artisan config:clear
+RUN php artisan cache:clear
+RUN php artisan view:clear
+RUN php artisan route:clear
