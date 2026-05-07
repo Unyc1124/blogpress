@@ -16,8 +16,3 @@ ENV LOG_CHANNEL=stderr
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
 RUN composer install --no-dev --optimize-autoloader
-
-RUN php artisan config:clear
-RUN php artisan cache:clear
-RUN php artisan view:clear
-RUN php artisan route:clear
