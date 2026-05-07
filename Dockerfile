@@ -17,4 +17,6 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 
 RUN composer install --no-dev --optimize-autoloader
 
-# Remove migrate/seed from here — move to runtime
+RUN chmod +x /var/www/html/start.sh
+
+CMD ["/bin/bash", "/var/www/html/start.sh"]

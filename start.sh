@@ -1,9 +1,8 @@
 #!/bin/bash
 set -e
 
+echo "Running migrations..."
 php artisan migrate --force
-php artisan db:seed --force
-php artisan config:cache
-php artisan route:cache
 
-/start.sh  # richarvey image's entrypoint
+echo "Starting nginx..."
+exec /start.sh
