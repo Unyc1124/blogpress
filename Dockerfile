@@ -9,7 +9,6 @@ FROM richarvey/nginx-php-fpm:3.1.6
 
 COPY --from=node_builder /app/public/build /var/www/html/public/build
 COPY . /var/www/html
-COPY conf/nginx-site.conf /etc/nginx/conf.d/default.conf
 
 WORKDIR /var/www/html
 
