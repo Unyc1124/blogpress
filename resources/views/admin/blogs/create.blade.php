@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+
 @section('content')
 
 <section class="dashboard-section container">

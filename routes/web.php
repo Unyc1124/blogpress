@@ -129,3 +129,5 @@ Route::delete('/admin/blogs/delete/{id}',
 
 
 Route::get('/search', [BlogController::class, 'search'])->name('blog.search');
+
+Route::get('/blogs/filter', [BlogController::class, 'filter'])->name('blog.filter');

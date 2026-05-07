@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Blog;
 
+use App\Models\Category;
+
 class HomeController extends Controller
+
 {
     /*
     |--------------------------------------------------------------------------
@@ -51,10 +54,13 @@ class HomeController extends Controller
 
             ->paginate(6);
 
+        $categories = Category::all();
+
         return view('frontend.home', compact(
 
             'heroBlogs',
-            'blogs'
+            'blogs',
+            'categories'
         ));
     }
 

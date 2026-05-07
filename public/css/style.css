@@ -1264,3 +1264,274 @@ html{
 
     transform:translateY(-3px);
 }
+
+/*final filter query*/
+
+
+    .filter-section {
+        padding: 32px 0 16px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .filter-group {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .filter-label {
+        font-size: 13px;
+        font-weight: 600;
+        color: #6b7280;
+        white-space: nowrap;
+    }
+
+    .filter-pills {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .filter-pill {
+        padding: 7px 16px;
+        border-radius: 999px;
+        border: 1.5px solid #e5e7eb;
+        background: #fff;
+        color: #374151;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .filter-pill:hover {
+        border-color: var(--primary, #2563eb);
+        color: var(--primary, #2563eb);
+    }
+
+    .filter-pill.active {
+        background: var(--primary, #2563eb);
+        border-color: var(--primary, #2563eb);
+        color: #fff;
+    }
+
+    .recent-section {
+        position: relative;
+        min-height: 300px;
+    }
+
+    .blog-carousel.loading {
+        opacity: 0.4;
+        pointer-events: none;
+    }
+
+    .ajax-loader {
+        display: none;
+        position: absolute;
+        top: 80px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 28px;
+        color: var(--primary, #2563eb);
+        z-index: 10;
+    }
+
+    .no-results {
+        text-align: center;
+        padding: 60px 20px;
+        color: #9ca3af;
+        width: 100%;
+    }
+
+    .no-results i {
+        font-size: 48px;
+        margin-bottom: 12px;
+        display: block;
+    }
+
+
+    /* ==========================================
+   HAMBURGER MENU
+========================================== */
+
+.hamburger{
+
+    display:none;
+    flex-direction:column;
+    gap:5px;
+    cursor:pointer;
+}
+
+.hamburger span{
+
+    width:26px;
+    height:2px;
+    background:#111;
+    border-radius:20px;
+    transition:0.3s;
+}
+
+/* ANIMATION */
+
+.hamburger.open span:nth-child(1){
+
+    transform:
+    rotate(45deg)
+    translate(5px,5px);
+}
+
+.hamburger.open span:nth-child(2){
+
+    opacity:0;
+}
+
+.hamburger.open span:nth-child(3){
+
+    transform:
+    rotate(-45deg)
+    translate(5px,-5px);
+}
+
+/* ==========================================
+   MOBILE NAVBAR
+========================================== */
+
+@media(max-width:768px){
+
+    .hamburger{
+
+        display:flex;
+    }
+
+    .navbar-container{
+
+        position:relative;
+    }
+
+    .nav-links{
+
+        position:absolute;
+        top:78px;
+        right:0;
+
+        width:100%;
+
+        background:
+        rgba(255,255,255,0.96);
+
+        backdrop-filter:blur(20px);
+
+        flex-direction:column;
+        align-items:flex-start;
+
+        padding:25px;
+
+        gap:18px;
+
+        border-radius:18px;
+
+        display:none;
+
+        box-shadow:
+        0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .nav-links.active{
+
+        display:flex;
+    }
+
+    .search-form{
+
+        width:100%;
+    }
+
+    .search-box{
+
+        width:100%;
+    }
+
+    .search-box input{
+
+        width:100%;
+    }
+
+    .admin-btn{
+
+        width:100%;
+        display:flex;
+        justify-content:center;
+    }
+}
+
+/*create page responsive ness*/
+/* ==========================================
+   ADMIN DASHBOARD RESPONSIVE FIX
+========================================== */
+
+@media(max-width:768px){
+
+    .dashboard-header{
+
+        display:flex;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:22px;
+    }
+
+    .dashboard-header h1{
+
+        font-size:58px;
+        line-height:1.05;
+        margin-bottom:10px;
+    }
+
+    .dashboard-header p{
+
+        font-size:15px;
+        line-height:1.6;
+    }
+
+    .new-post-btn{
+
+        width:100%;
+        justify-content:center;
+        align-items:center;
+        display:flex;
+
+        padding:16px 20px;
+
+        border-radius:18px;
+
+        font-size:16px;
+    }
+
+    .dashboard-card{
+
+        padding:24px;
+    }
+}
+
+/* ==========================================
+   MOBILE TABLE FIX
+========================================== */
+
+.table-responsive{
+
+    width:100%;
+    overflow-x:auto;
+}
+
+.table-responsive::-webkit-scrollbar{
+
+    height:6px;
+}
+
+.dashboard-table{
+
+    min-width:850px;
+}

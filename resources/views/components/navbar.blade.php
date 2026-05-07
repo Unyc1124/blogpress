@@ -15,8 +15,17 @@
 
         </div>
 
-        {{-- NAVIGATION --}}
-        <ul class="nav-links">
+        {{-- HAMBURGER --}}
+        <div class="hamburger" id="hamburger">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </div>
+
+        {{-- NAV LINKS --}}
+        <ul class="nav-links" id="navLinks">
 
             <li>
 
@@ -24,28 +33,24 @@
 
             </li>
 
-            {{-- SEARCH BAR --}}
             <li>
 
-                <!-- <form action="/"
-      method="GET"
-      class="search-form"> -->
-      <form action="{{ route('blog.search') }}"
-      method="GET"
-      class="search-form">
+                <form action="{{ route('blog.search') }}"
+                      method="GET"
+                      class="search-form">
 
-    <div class="search-box">
+                    <div class="search-box">
 
-        <i class="fas fa-search"></i>
+                        <i class="fas fa-search"></i>
 
-        <input type="text"
-               name="search"
-               placeholder="Search articles..."
-               value="{{ request('search') }}">
+                        <input type="text"
+                               name="search"
+                               placeholder="Search articles..."
+                               value="{{ request('search') }}">
 
-    </div>
+                    </div>
 
-</form>
+                </form>
 
             </li>
 
@@ -65,3 +70,21 @@
     </div>
 
 </nav>
+
+<script>
+
+    const hamburger =
+        document.getElementById('hamburger');
+
+    const navLinks =
+        document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+
+        navLinks.classList.toggle('active');
+
+        hamburger.classList.toggle('open');
+
+    });
+
+</script>

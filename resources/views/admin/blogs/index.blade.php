@@ -27,6 +27,7 @@
 
     <div class="table-wrapper">
 
+    <div class="table-responsive">
         <table class="blog-table">
 
             <thead>
@@ -131,6 +132,7 @@
             </tbody>
 
         </table>
+        </div>
 
     </div>
 

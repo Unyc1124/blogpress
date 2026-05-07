@@ -39,4 +39,45 @@ class BlogController extends Controller
 
     return view('blogs.search', compact('blogs', 'query'));
 }
+
+ /*
+    |--------------------------------------------------------------------------
+    | AJAX FILTER (category + date)
+    |--------------------------------------------------------------------------
+    */
+
+    public function filter(Request $request)
+    {
+        $category = $request->input('category');
+        $date     = $request->input('date');
+
+        $blogs = Blog::with(['category', 'author', 'tags'])
+            ->where('status', 'published')
+            ->when($category, function($q) use ($category) {
+                $q->whereHas('category', function($q) use ($category) {
+                    $q->where('slug', $category);
+                });
+            })
+            ->when($date === 'oldest', function($q) {
+                $q->oldest();
+            })
+            ->when($date === 'this_month', function($q) {
+                $q->whereMonth('created_at', now()->month)
+                  ->whereYear('created_at', now()->year);
+            })
+            ->when($date === 'this_year', function($q) {
+                $q->whereYear('created_at', now()->year);
+            })
+            ->when(!$date || $date === 'latest', function($q) {
+                $q->latest();
+            })
+            ->paginate(6);
+
+        if($request->ajax()){
+            return view('blogs.partials.blog-cards',
+    compact('blogs'))->render();
+        }
+
+        return redirect('/');
+    }
 }
