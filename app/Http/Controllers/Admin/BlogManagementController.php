@@ -10,6 +10,7 @@ use App\Models\Tag;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class BlogManagementController extends Controller
 {
@@ -80,7 +81,7 @@ class BlogManagementController extends Controller
 
         /*
         |--------------------------------------------------------------------------
-        | IMAGE UPLOAD
+        | IMAGE UPLOAD TO CLOUDINARY
         |--------------------------------------------------------------------------
         */
 
@@ -90,24 +91,16 @@ class BlogManagementController extends Controller
             'featured_image'
         )) {
 
-            $image = $request->file(
-                'featured_image'
-            );
+            $uploaded = Cloudinary::upload(
 
-            $imageName =
-                time().
-                '.'.
-                $image->getClientOriginalExtension();
+                $request->file('featured_image')
+                         ->getRealPath(),
 
-            $image->move(
-
-                public_path('uploads'),
-
-                $imageName
+                ['folder' => 'blog_images']
             );
 
             $imagePath =
-                'uploads/'.$imageName;
+                $uploaded->getSecurePath();
         }
 
         /*
@@ -136,7 +129,7 @@ class BlogManagementController extends Controller
             'author_id' => auth()->id(),
 
             'author_name' =>
-    $request->author_name,
+                $request->author_name,
 
             'status' => $request->status,
 
@@ -255,7 +248,7 @@ class BlogManagementController extends Controller
 
         /*
         |--------------------------------------------------------------------------
-        | IMAGE UPDATE
+        | IMAGE UPDATE TO CLOUDINARY
         |--------------------------------------------------------------------------
         */
 
@@ -266,24 +259,16 @@ class BlogManagementController extends Controller
             'featured_image'
         )) {
 
-            $image = $request->file(
-                'featured_image'
-            );
+            $uploaded = Cloudinary::upload(
 
-            $imageName =
-                time().
-                '.'.
-                $image->getClientOriginalExtension();
+                $request->file('featured_image')
+                         ->getRealPath(),
 
-            $image->move(
-
-                public_path('uploads'),
-
-                $imageName
+                ['folder' => 'blog_images']
             );
 
             $imagePath =
-                'uploads/'.$imageName;
+                $uploaded->getSecurePath();
         }
 
         /*
@@ -301,7 +286,7 @@ class BlogManagementController extends Controller
             ),
 
             'author_name' =>
-    $request->author_name,
+                $request->author_name,
 
             'excerpt' => $request->excerpt,
 

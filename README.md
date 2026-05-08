@@ -2,9 +2,7 @@
 
 ## Project Overview
 
- JobYaari (JobYaari Assignment Project) is a full-stack Blog Management System developed using Laravel. The project includes both frontend and admin functionalities with dynamic AJAX-based filtering, authentication, responsive UI design, and live deployment.
-
-The application allows users to browse blogs, search articles, filter blogs dynamically without page refresh, and read full blog content. Admin users can securely manage blog posts through a dedicated dashboard.
+BlogPress (JobYaari Assignment Project) is a full-stack Blog Management System developed using Laravel. The project includes both frontend and admin functionalities with dynamic AJAX-based filtering, authentication, responsive UI design, and live deployment.
 
 This project was developed as part of the PHP/Laravel Developer Internship Assessment.
 
@@ -48,29 +46,20 @@ Password: admin123
 ## Frontend Features
 
 * Responsive homepage
-* Blog listing page
-* Blog detail page
-* Search functionality
-* AJAX category filtering
-* AJAX date filtering
-* Dynamic blog rendering from database
+* Blog listing with AJAX category and date filtering
+* Blog detail page with table of contents
+* Search by title, category, and tags
 * Related blogs section
 * Pagination
-* Mobile responsive navbar with hamburger menu
-* Responsive cards and layouts
-
----
+* Mobile responsive navbar
 
 ## Admin Features
 
-* Admin authentication system
-* Admin dashboard
-* Create blog posts
-* Edit blog posts
-* Delete blog posts
-* Upload featured images
-* Manage categories
-* Rich text editor using CKEditor
+* Admin authentication
+* Create, edit, delete blog posts
+* Featured image upload via Cloudinary
+* Category management
+* CKEditor rich text editor
 
 ---
 
@@ -78,61 +67,35 @@ Password: admin123
 
 ## Backend
 
-* PHP
-* Laravel 12
-* Eloquent ORM
-* Laravel Authentication
-* Laravel Blade Templates
-
----
+* PHP, Laravel 12, Eloquent ORM, Blade Templates
 
 ## Frontend
 
-* HTML5
-* CSS3
-* JavaScript
-* jQuery
-* AJAX
-* Responsive Design
+* HTML5, CSS3, JavaScript, jQuery, AJAX
 
----
+## Storage
+
+* Cloudinary (persistent image storage for production)
 
 ## Database
 
-* PostgreSQL (Production - Render)
-* MySQL (Local Development)
-
----
+* PostgreSQL (Production), MySQL (Local)
 
 ## Deployment
 
-* GitHub
-* Render
-* Docker
+* GitHub, Render, Docker, Cloudinary
 
 ---
 
-# AJAX Filtering Functionality
-
-One of the main requirements of the assignment was implementing dynamic filtering using AJAX and jQuery.
-
-The project includes:
+# AJAX Filtering
 
 * Filter blogs by category
-* Filter blogs by date
-* Dynamic content loading without page refresh
-* Partial Blade rendering
-* jQuery AJAX requests
+* Filter blogs by date (Latest, Oldest, This Month, This Year)
+* No page reload — jQuery AJAX + partial Blade rendering
 
-This improves user experience by updating blogs instantly without reloading the page.
 
----
 
 # Database Relationships
-
-The project uses Laravel Eloquent relationships.
-
-## Relationships Used
 
 * Blog belongsTo Category
 * Blog belongsTo User (Author)
@@ -141,108 +104,81 @@ The project uses Laravel Eloquent relationships.
 
 ---
 
-# Search Functionality
-
-The search system allows users to search blogs dynamically using:
-
-* Blog title
-* Category name
-* Tag name
-
-The search is implemented using Laravel query builder and Eloquent relationships.
-
----
-
-# CKEditor Integration
-
-CKEditor is integrated for rich blog content creation.
-
-Features:
-
-* Rich text formatting
-* Better content editing experience
-* Admin-friendly blog creation
-
----
-
-# Responsive Design
-
-The project is fully responsive and optimized for:
-
-* Mobile devices
-* Tablets
-* Laptops
-* Desktop screens
-
-Responsive improvements include:
-
-* Mobile navbar with hamburger menu
-* Responsive dashboard
-* Responsive tables
-* Flexible blog cards
-* Adaptive layouts
-
----
-
-# Deployment Process
-
-The project was deployed using Render with Docker support.
-
-Deployment included:
-
-* GitHub repository integration
-* Docker configuration
-* Environment variable setup
-* PostgreSQL database integration
-* Production migrations
-* Laravel optimization
-
----
 
 # Challenges Faced During Development
 
-During development and deployment, several real-world issues were encountered and resolved.
+## Images Disappearing After Every Deployment
 
-## Problems Solved
+**Problem**
 
-* Responsive layout issues
+After deploying to Render, all featured images disappeared on every redeploy. The original code stored images on the server's local filesystem:
+
+```php
+$image->move(public_path('uploads'), $imageName);
+$imagePath = 'uploads/' . $imageName;
+```
+
+Render uses an **ephemeral filesystem** — local files are wiped on every restart or redeploy.
+
+**Solution — Cloudinary Integration**
+
+Moved image storage to Cloudinary so images are stored externally and persist permanently.
+
+```bash
+composer require cloudinary-labs/cloudinary-laravel
+php artisan vendor:publish --provider="CloudinaryLabs\CloudinaryLaravel\CloudinaryServiceProvider"
+```
+
+Replaced local upload with Cloudinary upload in `BlogManagementController`:
+
+```php
+// BEFORE
+$image->move(public_path('uploads'), $imageName);
+$imagePath = 'uploads/' . $imageName;
+
+// AFTER
+$uploaded  = Cloudinary::upload(
+    $request->file('featured_image')->getRealPath(),
+    ['folder' => 'blog_images']
+);
+$imagePath = $uploaded->getSecurePath();
+```
+
+Also added Cloudinary credentials directly in the **Render dashboard Environment Variables** since `.env` is not deployed.
+
+**Result** — Images now store as full `https://res.cloudinary.com/...` URLs in the database and persist across all redeployments.
+
+---
+
+## Other Problems Solved
+
 * AJAX rendering issues
-* Laravel route/cache issues
 * Docker deployment failures
 * MySQL vs PostgreSQL migration conflicts
 * Render environment variable configuration
 * Production database migration problems
 
-These issues helped improve debugging and deployment understanding.
-
 ---
 
 # Assignment Requirements Covered
 
-## Completed Requirements
-
 * PHP/Laravel Backend
 * Database Integration
 * Responsive Frontend
-* AJAX Filtering
+* AJAX Filtering (jQuery, no page reload)
 * Search Functionality
 * CRUD Operations
 * Admin Authentication
 * Live Deployment
 * GitHub Repository
 * Mobile Responsive Design
-* Blog Management System
-
 
 ---
 
+
 # Author
 
-Developed by:
-
-```text
-Aditi Dubey
-```
+Developed by Aditi Dubey
 
 ---
 
