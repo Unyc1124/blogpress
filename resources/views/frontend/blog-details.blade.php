@@ -186,7 +186,12 @@
 
     <div class="blog-carousel">
 
-        @foreach($relatedBlogs as $related)
+        {{-- ✅ Safe version --}}
+@isset($related)
+    @foreach($related as $blog)
+        {{-- your card code --}}
+    @endforeach
+@endisset
 
         <a href="{{ route(
             'blog.details',
