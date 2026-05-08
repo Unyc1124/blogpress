@@ -106,7 +106,7 @@ Password: admin123
 ## 1. Clone Repository
 
 ```bash
-git clone <YOUR_GITHUB_REPOSITORY_LINK>
+git clone https://github.com/Unyc1124/blogpress
 ```
 
 ---
