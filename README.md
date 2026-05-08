@@ -1,4 +1,3 @@
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/4b8e9abb-e5aa-4c01-a7e3-2f8a86e14507" /># JobYaari - Blog Management System
 
 ## Project Overview
 
