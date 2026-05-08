@@ -201,10 +201,11 @@
 
             <div class="blog-card">
 
-                <img src="{{ asset(
+                <!-- <img src="{{ asset(
                     $related->featured_image) }}"
 
-                     alt="Blog">
+                     alt="Blog"> -->
+                     <img src="{{ $blog->featured_image }}" alt="{{ $blog->title }}">
 
                 <div class="blog-content">
 
