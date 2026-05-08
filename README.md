@@ -1,4 +1,4 @@
-# JobYaari - Blog Management System
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/4b8e9abb-e5aa-4c01-a7e3-2f8a86e14507" /># JobYaari - Blog Management System
 
 ## Project Overview
 
@@ -10,7 +10,7 @@ BlogPress (JobYaari Assignment Project) is a full-stack Blog Management System d
 ## Live Website
 
 ```text
-https://blogpress-e2tl.onrender.com
+https://blogpress-n7jn.onrender.com
 ```
 
 ## GitHub Repository
@@ -26,7 +26,7 @@ https://github.com/Unyc1124/blogpress
 ## Admin Panel URL
 
 ```text
-https://blogpress-e2tl.onrender.com/login
+https://blogpress-n7jn.onrender.com/login
 ```
 
 ## Credentials
