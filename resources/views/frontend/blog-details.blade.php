@@ -171,7 +171,6 @@
     </aside>
 
 </section>
-
 {{-- =========================================
     RELATED BLOGS
 ========================================= --}}
@@ -179,85 +178,46 @@
 <section class="recent-section container">
 
     <h2 class="section-title">
-
         Related Articles
-
     </h2>
 
     <div class="blog-carousel">
 
-        {{-- ✅ Safe version --}}
-@isset($related)
-    @foreach($related as $blog)
-        {{-- your card code --}}
-    @endforeach
-@endisset
+        @isset($related)
+            @foreach($related as $relatedBlog)
 
-        <a href="{{ route(
-            'blog.details',
-            $related->slug) }}"
+                <a href="{{ route('blog.details', $relatedBlog->slug) }}"
+                   class="blog-card-link">
 
-           class="blog-card-link">
+                    <div class="blog-card">
 
-            <div class="blog-card">
+                        <img src="{{ $relatedBlog->featured_image }}"
+                             alt="{{ $relatedBlog->title }}">
 
-                <!-- <img src="{{ asset(
-                    $related->featured_image) }}"
+                        <div class="blog-content">
 
-                     alt="Blog"> -->
-                     <img src="{{ $blog->featured_image }}" alt="{{ $blog->title }}">
+                            <span class="blog-category">
+                                {{ strtoupper($relatedBlog->category?->name) }}
+                            </span>
 
-                <div class="blog-content">
+                            <h3>{{ $relatedBlog->title }}</h3>
 
-                    <span class="blog-category">
+                            <p>{{ $relatedBlog->excerpt }}</p>
 
-                        {{ strtoupper(
-                            $related->category?->name) }}
+                            <div class="blog-card-meta">
+                                <span>{{ $relatedBlog->author?->name ?? 'Admin' }}</span>
+                                <span class="meta-dot">•</span>
+                                <span>{{ $relatedBlog->created_at->format('d/m/Y') }}</span>
+                            </div>
 
-                    </span>
-
-                    <h3>
-
-                        {{ $related->title }}
-
-                    </h3>
-
-                    <p>
-
-                        {{ $related->excerpt }}
-
-                    </p>
-
-                    <div class="blog-card-meta">
-
-                        <span>
-
-                            {{ $related->author?->name ?? 'Admin' }}
-
-                        </span>
-
-                        <span class="meta-dot">
-
-                            •
-
-                        </span>
-
-                        <span>
-
-                            {{ $related->created_at
-                                ->format('d/m/Y') }}
-
-                        </span>
+                        </div>
 
                     </div>
 
-                </div>
+                </a>
 
-            </div>
-
-        </a>
-
-        @endforeach
+            @endforeach
+        @endisset
 
     </div>
 
