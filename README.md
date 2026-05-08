@@ -4,11 +4,8 @@
 
 BlogPress (JobYaari Assignment Project) is a full-stack Blog Management System developed using Laravel. The project includes both frontend and admin functionalities with dynamic AJAX-based filtering, authentication, responsive UI design, and live deployment.
 
-This project was developed as part of the PHP/Laravel Developer Internship Assessment.
 
 ---
-
-# Live Project
 
 ## Live Website
 
