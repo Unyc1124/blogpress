@@ -10,7 +10,8 @@ use App\Models\Tag;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+// use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use Cloudinary\Cloudinary;
 
 class BlogManagementController extends Controller
 {
@@ -91,16 +92,31 @@ class BlogManagementController extends Controller
             'featured_image'
         )) {
 
-            $uploaded = Cloudinary::upload(
+            // $uploaded = Cloudinary::upload(
 
-                $request->file('featured_image')
-                         ->getRealPath(),
+            //     $request->file('featured_image')
+            //              ->getRealPath(),
 
-                ['folder' => 'blog_images']
-            );
+            //     ['folder' => 'blog_images']
+            // );
 
-            $imagePath =
-                $uploaded->getSecurePath();
+            // $imagePath =
+            //     $uploaded->getSecurePath();
+            // In your method replace Cloudinary::upload() with:
+$cloudinary = new \Cloudinary\Cloudinary([
+    'cloud' => [
+        'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
+        'api_key'    => env('CLOUDINARY_API_KEY'),
+        'api_secret' => env('CLOUDINARY_API_SECRET'),
+    ]
+]);
+
+$uploaded = $cloudinary->uploadApi()->upload(
+    $request->file('featured_image')->getRealPath(),
+    ['folder' => 'blog_images']
+);
+
+$imagePath = $uploaded['secure_url'];
         }
 
         /*
@@ -259,16 +275,32 @@ class BlogManagementController extends Controller
             'featured_image'
         )) {
 
-            $uploaded = Cloudinary::upload(
+            // $uploaded = Cloudinary::upload(
 
-                $request->file('featured_image')
-                         ->getRealPath(),
+            //     $request->file('featured_image')
+            //              ->getRealPath(),
 
-                ['folder' => 'blog_images']
-            );
+            //     ['folder' => 'blog_images']
+            // );
 
-            $imagePath =
-                $uploaded->getSecurePath();
+            // $imagePath =
+            //     $uploaded->getSecurePath();
+
+            // In your method replace Cloudinary::upload() with:
+$cloudinary = new \Cloudinary\Cloudinary([
+    'cloud' => [
+        'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
+        'api_key'    => env('CLOUDINARY_API_KEY'),
+        'api_secret' => env('CLOUDINARY_API_SECRET'),
+    ]
+]);
+
+$uploaded = $cloudinary->uploadApi()->upload(
+    $request->file('featured_image')->getRealPath(),
+    ['folder' => 'blog_images']
+);
+
+$imagePath = $uploaded['secure_url'];
         }
 
         /*
