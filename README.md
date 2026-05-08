@@ -1,4 +1,4 @@
-# BlogPress / JobYaari - Blog Management System
+# JobYaari - Blog Management System
 
 ## Project Overview
 
