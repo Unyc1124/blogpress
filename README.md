@@ -101,6 +101,120 @@ Password: admin123
 ---
 
 
+# Installation Steps
+
+## 1. Clone Repository
+
+```bash
+git clone <YOUR_GITHUB_REPOSITORY_LINK>
+```
+
+---
+
+## 2. Move Into Project
+
+```bash
+cd blogpress
+```
+
+---
+
+## 3. Install Dependencies
+
+```bash
+composer install
+```
+
+---
+
+## 4. Create Environment File
+
+```bash
+cp .env.example .env
+```
+
+---
+
+## 5. Generate Application Key
+
+```bash
+php artisan key:generate
+```
+
+---
+
+## 6. Configure Database
+
+Update your `.env` file:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=blogpress
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+---
+
+## 7. Run Migrations
+
+```bash
+php artisan migrate
+```
+
+---
+
+## 8. Seed Database (Optional)
+
+```bash
+php artisan db:seed
+```
+
+---
+
+## 9. Start Development Server
+
+```bash
+php artisan serve
+```
+
+---
+
+# Docker Configuration
+
+The project uses Docker for production deployment.
+
+Example Dockerfile:
+
+```dockerfile
+FROM richarvey/nginx-php-fpm:3.1.6
+
+COPY . .
+
+ENV SKIP_COMPOSER=1
+ENV WEBROOT=/var/www/html/public
+ENV PHP_ERRORS_STDERR=1
+ENV RUN_SCRIPTS=1
+ENV REAL_IP_HEADER=1
+
+ENV APP_ENV=production
+ENV APP_DEBUG=false
+ENV LOG_CHANNEL=stderr
+
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
+RUN composer install --no-dev --optimize-autoloader
+RUN php artisan migrate --force
+RUN php artisan db:seed --force
+
+CMD ["/start.sh"]
+```
+
+
+
+
 # Challenges Faced During Development
 
 ## Images Disappearing After Every Deployment
@@ -181,3 +295,6 @@ Developed by Aditi Dubey
 # Thank You
 
 Thank you for reviewing this project.
+
+
+
