@@ -129,9 +129,7 @@
 
                     <div class="blog-card-image-wrapper">
 
-                        <!-- <img src="{{ asset($blog->featured_image) }}" -->
-                         <img src="{{ $related->featured_image }}">
-                             alt="{{ $blog->title }}">
+                        <img src="{{ $blog->featured_image }}" alt="{{ $blog->title }}">                        
 
                         <span class="blog-category">
 
