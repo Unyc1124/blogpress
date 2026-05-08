@@ -59,11 +59,15 @@
         {{-- HERO IMAGE --}}
 
         <div class="details-image-wrapper">
-
+<!-- 
             <img src="{{ asset(
                 $blog->featured_image) }}"
 
-                 class="details-image">
+                 class="details-image"> -->
+
+                 <img src="{{ $blog->featured_image }}"
+     alt="{{ $blog->title }}"
+     class="details-image">
 
         </div>
 

@@ -5,7 +5,8 @@
 
     <div class="blog-card">
 
-        <img src="{{ asset($blog->featured_image) }}"
+        <!-- <img src="{{ asset($blog->featured_image) }}" -->
+         <img src="{{ $related->featured_image }}">
              alt="{{ $blog->title }}">
 
         <div class="blog-content">
